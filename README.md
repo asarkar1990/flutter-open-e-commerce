@@ -1,6 +1,6 @@
 # flutter-open-e-commerce
 Single vendor e-commerce built with flutter
-# Pages
+# Buyer App Pages
 - SignIn 
 - SignUp
 - Home 
@@ -8,3 +8,6 @@ Single vendor e-commerce built with flutter
 - Product Details
 - Cart
 - Checkout
+
+#Saller App Page
+- Manage products
