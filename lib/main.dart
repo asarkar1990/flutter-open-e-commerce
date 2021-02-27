@@ -1,64 +1,82 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter e-commerce',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Sign in'),
+        backgroundColor: Colors.teal,
       ),
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/background image.jpg'))),
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
             Text(
-              'You have pushed the button this many times:',
+              'Welcome',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+              ),
+            ),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'Email'),
+              ),
+            ),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password'
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: (){},
+              child: Text(
+                  'Login',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              "Don't Have An Account?",
+              style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+                color: Colors.yellow,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            TextButton(
+                onPressed: () {},
+                child: Image(
+                  image: AssetImage('images/sing up with google button.png'),
+                )),
+            TextButton(
+              onPressed: () {},
+              child: Image(
+                image: AssetImage('images/fb login inage.png'),
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
