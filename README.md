@@ -3,6 +3,7 @@ Single vendor e-commerce built with flutter
 # Buyer App Pages
 - SignIn 
 - SignUp
+- Profile
 - Home 
 - Product List
 - Product Details
