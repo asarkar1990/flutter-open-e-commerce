@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:opencommerce/controllers/product_controller.dart';
 import 'package:opencommerce/model/models.dart';
-import 'package:opencommerce/product_data.dart';
 import 'package:opencommerce/views/product_view.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final ProductController productController = ProductController();
+
+  @override
+  void initState() {
+    loadData();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -14,12 +28,11 @@ class HomeView extends StatelessWidget {
         ),
         body: Container(
           child: ListView.builder(
-            itemCount: products().length,
+            itemCount: productController.products.length,
             itemBuilder: (BuildContext context, int index) {
-              Product product = products()[index];
+              Product product = productController.products[index];
               return ListTile(
-                leading: Image.network(
-                    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-black-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260051"),
+                leading: Image.network(product.imageUrl),
                 title: Text(product.name),
                 subtitle: Text("${product.price}"),
                 onTap: () {
@@ -35,5 +48,10 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void loadData() async {
+    await productController.getProducts();
+    setState(() {});
   }
 }
