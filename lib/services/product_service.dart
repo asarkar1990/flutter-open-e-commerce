@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:opencommerce/model/models.dart';
+import 'package:opencommerce/models/models.dart';
 
 class ProductService {
   final fireStore = FirebaseFirestore.instance;

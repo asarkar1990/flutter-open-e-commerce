@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:opencommerce/controllers/product_controller.dart';
-import 'package:opencommerce/model/models.dart';
+import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/views/product_view.dart';
 
 class HomeView extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:opencommerce/model/models.dart';
+import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/services/product_service.dart';
 
 // View <===> Controller <===> Service

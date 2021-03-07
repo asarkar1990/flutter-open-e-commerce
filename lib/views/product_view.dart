@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:opencommerce/model/models.dart';
+import 'package:opencommerce/models/models.dart';
 
 class ProductView extends StatelessWidget {
   final Product product;
