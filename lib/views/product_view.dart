@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:opencommerce/models/models.dart';
+import 'package:opencommerce/views/checkout_view.dart';
+import 'package:opencommerce/views/wigets/cart_icon.dart';
 
 class ProductView extends StatelessWidget {
   final Product product;
@@ -12,6 +14,7 @@ class ProductView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Product"),
+          actions: [CartIcon()],
         ),
         body: Container(
           padding: EdgeInsets.all(20.0),
@@ -39,7 +42,16 @@ class ProductView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(onPressed: () {}, child: Text('Add to Cart')),
-                  ElevatedButton(onPressed: () {}, child: Text('Buy')),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckoutView(
+                                      products: [product],
+                                    )));
+                      },
+                      child: Text('Buy')),
                 ],
               ),
               Spacer()
@@ -50,3 +62,14 @@ class ProductView extends StatelessWidget {
     );
   }
 }
+
+// class DynamicView extends StatelessWidget {
+//   final Widget widget;
+//
+//   DynamicView(this.widget);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return widget;
+//   }
+// }

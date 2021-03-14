@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
       home:
           initialized ? HomeView() : Center(child: CircularProgressIndicator()),
