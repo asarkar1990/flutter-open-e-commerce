@@ -35,7 +35,8 @@ class _HomeViewState extends State<HomeView> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => ProductAddEditView()));
+                    builder: (BuildContext context) =>
+                        ProductAddEditView(Product())));
           },
           child: Icon(Icons.add),
         ),

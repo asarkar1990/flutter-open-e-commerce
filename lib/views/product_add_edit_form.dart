@@ -4,7 +4,9 @@ import 'package:opencommerce/models/models.dart';
 
 class ProductAddEditView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  final Product product = Product();
+  final Product product;
+
+  ProductAddEditView(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,18 @@ class ProductAddEditView extends StatelessWidget {
                   product.inStock = true;
 
                   /// form data is now valid. you may save to db.
-                  FirebaseFirestore.instance
-                      .collection("Products")
-                      .doc()
-                      .set(product.toMap());
+                  if (product.id != null) {
+                    FirebaseFirestore.instance
+                        .collection("Products")
+                        .doc(product.id)
+                        .set(product.toMap(), SetOptions(merge: true));
+                  } else {
+                    FirebaseFirestore.instance
+                        .collection("Products")
+                        .doc()
+                        .set(product.toMap(), SetOptions(merge: true));
+                  }
+
                   Navigator.pop(context);
                 }
               },
