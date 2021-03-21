@@ -19,7 +19,7 @@ class _ProductViewState extends State<ProductView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Product"),
+          title: Text("${widget.product.name}"),
           actions: [
             IconButton(
               icon: Icon(Icons.edit),

@@ -15,23 +15,23 @@ class ProductService {
             }).toList());
   }
 
-  Future<List<Product>> getProducts() async {
-    /// one time read
-    return fireStore.collection('Products').get().then((snapShot) =>
-        snapShot.docs.map((doc) => Product.fromMap(doc.data())).toList());
-
-    /// listen to real time snapshot
-
-    /// get snapshot from firebase
-    var snapShot = await fireStore.collection("Products").get();
-    var _products = <Product>[];
-    for (var doc in snapShot.docs) {
-      var json = doc.data();
-
-      /// convert json to product object
-      var p = Product.fromMap(json);
-      _products.add(p);
-    }
-    return _products;
-  }
+  // Future<List<Product>> getProducts() async {
+  //   /// one time read
+  //   return fireStore.collection('Products').get().then((snapShot) =>
+  //       snapShot.docs.map((doc) => Product.fromMap(doc.data())).toList());
+  //
+  //   /// listen to real time snapshot
+  //
+  //   /// get snapshot from firebase
+  //   var snapShot = await fireStore.collection("Products").get();
+  //   var _products = <Product>[];
+  //   for (var doc in snapShot.docs) {
+  //     var json = doc.data();
+  //
+  //     /// convert json to product object
+  //     var p = Product.fromMap(json);
+  //     _products.add(p);
+  //   }
+  //   return _products;
+  // }
 }

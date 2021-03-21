@@ -1,14 +1,32 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:opencommerce/controllers/auth_controller.dart';
+import 'package:opencommerce/controllers/product_controller.dart';
 import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/services/product_service.dart';
 import 'package:opencommerce/views/product_add_edit_form.dart';
 import 'package:opencommerce/views/product_view.dart';
 import 'package:opencommerce/views/wigets/cart_icon.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final ProductController productController = ProductController();
+
+  // @override
+  // void initState() {
+  //   loadData();
+  //
+  //   super.initState();
+  // }
+  //
+  // void loadData() async {
+  //   // await productController.getProducts();
+  //   // setState(() {});
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +39,6 @@ class HomeView extends StatelessWidget {
               icon: Icon(Icons.logout),
               onPressed: () {
                 signOut();
-
               },
             ),
             CartIcon()

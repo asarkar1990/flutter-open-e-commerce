@@ -27,11 +27,15 @@ class ProductAddEditView extends StatelessWidget {
 
                   /// form data is now valid. you may save to db.
                   if (product.id != null) {
+
+                    /// update
                     FirebaseFirestore.instance
                         .collection("Products")
                         .doc(product.id)
                         .set(product.toMap(), SetOptions(merge: true));
                   } else {
+
+                    /// create
                     FirebaseFirestore.instance
                         .collection("Products")
                         .doc()
