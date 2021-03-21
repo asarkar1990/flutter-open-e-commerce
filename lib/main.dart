@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:opencommerce/views/auth_view.dart';
+import 'package:opencommerce/views/auth_view.dart';
 import 'package:opencommerce/views/home_view.dart';
 import 'package:opencommerce/views/product_add_edit_form.dart';
+import 'package:opencommerce/views/sign_in.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
       home:
-          initialized ? HomeView() : Center(child: CircularProgressIndicator()),
+          initialized ? AuthView() : Center(child: CircularProgressIndicator()),
     );
   }
 

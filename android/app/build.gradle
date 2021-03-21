@@ -38,7 +38,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.auardixlabs.freecomerce"
+        applicationId "labs.auradix.freecommerce"
         minSdkVersion 21
         targetSdkVersion 29
         multiDexEnabled true
