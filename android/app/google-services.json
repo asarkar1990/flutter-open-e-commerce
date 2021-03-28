@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "807225569364",
+    "project_id": "free-commerce-728ab",
+    "storage_bucket": "free-commerce-728ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807225569364:android:618983d6bc38d67a78bdc1",
+        "android_client_info": {
+          "package_name": "com.auradix.freecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807225569364-hb0hmjstm0j2i4695it6um637g9qckkp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.auradix.freecommerce",
+            "certificate_hash": "93fb0ddceae1b8143c969f8cff338d9696bf1888"
+          }
+        },
+        {
+          "client_id": "807225569364-ust2csv4kedkd8rmaba7i1rcthm8i5e9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB51r_2swRWg6yWfSoTkCZLLAARRAZ8MOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807225569364-ust2csv4kedkd8rmaba7i1rcthm8i5e9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

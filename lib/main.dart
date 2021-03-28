@@ -1,83 +1,40 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:opencommerce/views/profile_update.dart';
 
 void main() {
-  runApp(MaterialApp(home: MyApp()));
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool initialized = false;
+
+  @override
+  void initState() {
+    initApp();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign in'),
-        backgroundColor: Colors.teal,
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('images/background image.jpg'))),
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Welcome',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-              ),
-            ),
-            Container(
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Email'),
-              ),
-            ),
-            Container(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password'
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: (){},
-              child: Text(
-                  'Login',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            Text(
-              "Don't Have An Account?",
-              style: TextStyle(
-                fontSize: 20,
-                fontStyle: FontStyle.italic,
-                color: Colors.yellow,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            TextButton(
-                onPressed: () {},
-                child: Image(
-                  image: AssetImage('images/sing up with google button.png'),
-                )),
-            TextButton(
-              onPressed: () {},
-              child: Image(
-                image: AssetImage('images/fb login inage.png'),
-              ),
-            ),
-          ],
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter e-commerce',
+      home: initialized
+          ? MyApp()
+          : Center(child: CircularProgressIndicator()),
     );
+  }
+
+  void initApp() async {
+    await Firebase.initializeApp();
+    setState(() {
+      initialized = true;
+    });
   }
 }
