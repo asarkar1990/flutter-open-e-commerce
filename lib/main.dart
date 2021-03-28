@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:opencommerce/views/profile_update.dart';
+import 'package:opencommerce/views/auth_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,9 +25,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
-      home: initialized
-          ? MyApp()
-          : Center(child: CircularProgressIndicator()),
+      home:
+      initialized ? AuthView() : Center(child: CircularProgressIndicator()),
     );
   }
 

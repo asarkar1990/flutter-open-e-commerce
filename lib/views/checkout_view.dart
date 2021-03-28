@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:opencommerce/models/models.dart';
+import 'package:opencommerce/views/product_%20view.dart';
 
-import 'product_view.dart';
 
 class CheckoutView extends StatelessWidget {
   final List<Product> products;

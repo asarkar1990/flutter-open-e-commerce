@@ -4,20 +4,14 @@ import 'package:opencommerce/models/models.dart';
 class ProductService {
   final fireStore = FirebaseFirestore.instance;
 
-  Future<List<Product>> getProducts() async {
-    /*return fireStore.collection('Phones').get().then((snapShot) =>
-        snapShot.docs.map((doc) => Product.fromMap(doc.data())).toList());*/
-
-    /// get snapshot from firebase
-    var snapShot = await fireStore.collection("Phones").get();
-    var _products = <Product>[];
-    for (var doc in snapShot.docs) {
-      var json = doc.data();
-
-      /// convert json to product object
-      var p = Product.fromMap(json);
-      _products.add(p);
-    }
-    return _products;
+  Stream<List<Product>> getProductStream() {
+    return fireStore
+        .collection('Products')
+        .snapshots()
+        .map((snapShot) => snapShot.docs.map((doc) {
+              Product p = Product.fromMap(doc.data());
+              p.id = doc.id;
+              return p;
+            }).toList());
   }
 }

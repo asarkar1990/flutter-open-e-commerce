@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/views/checkout_view.dart';
-import 'package:opencommerce/views/new_product.dart';
-import 'package:opencommerce/widgets/cart_icon.dart';
+import 'package:opencommerce/views/product_add_edit_form.dart';
+import 'package:opencommerce/views/widget/cart_icon.dart';
 
 class ProductView extends StatefulWidget {
   final Product product;
@@ -19,7 +19,7 @@ class _ProductViewState extends State<ProductView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Product"),
+          title: Text("${widget.product.name}"),
           actions: [
             IconButton(
               icon: Icon(Icons.edit),
@@ -27,7 +27,7 @@ class _ProductViewState extends State<ProductView> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NewProduct()),
+                      builder: (context) => ProductAddEditView(widget.product)),
                 );
                 setState(() {});
               },
@@ -81,4 +81,3 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 }
-

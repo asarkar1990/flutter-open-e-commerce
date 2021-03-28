@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:opencommerce/models/models.dart';
 
-class NewProduct extends StatelessWidget {
+class ProductAddEditView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  final Product product = Product();
+  final Product product;
+
+  ProductAddEditView(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,25 @@ class NewProduct extends StatelessWidget {
                   /// data is valid. lets save the form.
                   form.save();
 
-                  product.inStock= true;
+                  product.inStock = true;
 
                   /// form data is now valid. you may save to db.
-                  FirebaseFirestore.instance
-                      .collection("Phones")
-                      .doc()
-                      .set(product.toMap());
+                  if (product.id != null) {
+
+                    /// update
+                    FirebaseFirestore.instance
+                        .collection("Products")
+                        .doc(product.id)
+                        .set(product.toMap(), SetOptions(merge: true));
+                  } else {
+
+                    /// create
+                    FirebaseFirestore.instance
+                        .collection("Products")
+                        .doc()
+                        .set(product.toMap(), SetOptions(merge: true));
+                  }
+
                   Navigator.pop(context);
                 }
               },
@@ -69,7 +83,7 @@ class NewProduct extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: "Product Image Url",
                 ),
-                onSaved: (value) => product.imageUrl= value,
+                onSaved: (value) => product.imageUrl = value,
               ), // this.description,
               TextFormField(
                 initialValue: product.description,
