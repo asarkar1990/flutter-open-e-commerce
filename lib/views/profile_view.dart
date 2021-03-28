@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:opencommerce/views/profile_update.dart';
+import 'package:flutter/';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _ProfileViewState extends State<ProfileView> {
             SizedBox(
               height: 10,
             ),
-            Text('Name'),
+            Text(widget.name),
             SizedBox(
               height: 10,
             ),
