@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:opencommerce/controllers/cart_controller.dart';
 import 'package:opencommerce/views/auth_view.dart';
+
+final cart = CartController();
 
 void main() {
   runApp(MyApp());
