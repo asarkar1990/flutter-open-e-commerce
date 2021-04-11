@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:opencommerce/main.dart';
 import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/views/checkout_view.dart';
 import 'package:opencommerce/views/product_add_edit_form.dart';
@@ -60,7 +61,18 @@ class _ProductViewState extends State<ProductView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Add to Cart')),
+                  ElevatedButton(
+                      onPressed: () {
+                        cart.products.add(widget.product);
+
+                        /// show snack for confirmation
+                        final snak = SnackBar(
+                          content: Text(
+                              "${widget.product.name} is added to your cart"),
+                        );
+                        //ScaffoldMessenger.of(context).showSnackBar(snak);
+                      },
+                      child: Text('Add to Cart')),
                   ElevatedButton(
                       onPressed: () {
                         Navigator.push(
