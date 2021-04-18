@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:opencommerce/controllers/cart_controller.dart';
-import 'package:opencommerce/views/auth_view.dart';
+import 'package:opencommerce/views/home_view.dart';
 
 final cart = CartController();
 
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
       home:
-          initialized ? AuthView() : Center(child: CircularProgressIndicator()),
+          initialized ? HomeView() : Center(child: CircularProgressIndicator()),
     );
   }
 

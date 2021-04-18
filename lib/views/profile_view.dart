@@ -39,7 +39,7 @@ class ProfileView extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  _profile.emailId ?? '',
+                  _profile.email ?? '',
                 ),
                 subtitle: Text("Email Id"),
               ),

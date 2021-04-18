@@ -69,11 +69,11 @@ class ProfileAddEditView extends StatelessWidget {
                   onSaved: (value) => profile.name = value,
                 ),
                 TextFormField(
-                  initialValue: profile.emailId,
+                  initialValue: profile.email,
                   decoration: InputDecoration(labelText: "Email Id"),
                   validator: (value) =>
                       value.isEmpty ? "Please enter your email Id" : null,
-                  onSaved: (value) => profile.emailId = value,
+                  onSaved: (value) => profile.email = value,
                 ),
                 TextFormField(
                   initialValue: profile.mobileNumber,
