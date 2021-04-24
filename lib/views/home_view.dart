@@ -68,11 +68,14 @@ class _HomeViewState extends State<HomeView> {
 
                   /// fetch profile from firebase if exist
                   final user = FirebaseAuth.instance.currentUser;
-                  DocumentSnapshot doc = await FirebaseFirestore.instance
-                      .collection("profiles")
-                      .doc(user.uid)
-                      .get();
-                  if (doc.exists) {
+                  DocumentSnapshot doc;
+                  try {
+                    doc = await FirebaseFirestore.instance
+                        .collection("profiles")
+                        .doc(user.uid)
+                        .get();
+                  } catch (e) {}
+                  if (doc != null && doc.exists) {
                     _profile = Profile.fromMap(doc.data());
                   }
 

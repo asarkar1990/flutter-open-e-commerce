@@ -25,27 +25,32 @@ String productToMap(Product data) => json.encode(data.toMap());
 
 class Order {
   Order({
+    this.uid,
     this.buyer,
     this.products,
     this.deliveryAddress,
   });
 
+  String uid;
   final Profile buyer;
   final List<Product> products;
   final Adress deliveryAddress;
 
   Order copyWith({
+    String uid,
     Profile buyer,
     List<Product> products,
     Adress deliveryAddress,
   }) =>
       Order(
+        uid: uid ?? this.uid,
         buyer: buyer ?? this.buyer,
         products: products ?? this.products,
         deliveryAddress: deliveryAddress ?? this.deliveryAddress,
       );
 
   factory Order.fromMap(Map<String, dynamic> json) => Order(
+        uid: json["uid"] == null ? null : json["uid"],
         buyer: json["buyer"] == null ? null : Profile.fromMap(json["buyer"]),
         products: json["products"] == null
             ? null
@@ -57,6 +62,7 @@ class Order {
       );
 
   Map<String, dynamic> toMap() => {
+        "uid": uid == null ? null : uid,
         "buyer": buyer == null ? null : buyer.toMap(),
         "products": products == null
             ? null

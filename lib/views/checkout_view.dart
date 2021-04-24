@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:opencommerce/models/models.dart';
+import 'package:opencommerce/services/order_service.dart';
 import 'package:opencommerce/views/wigets/pricing_details_view.dart';
 
 import 'product_view.dart';
@@ -40,7 +43,23 @@ class CheckoutView extends StatelessWidget {
             PricingView(products),
             ElevatedButton(
               child: Text("Place order"),
-              onPressed: () {},
+              onPressed: () async {
+                /// get user profile
+                var data = await FirebaseFirestore.instance
+                    .doc('profiles/${FirebaseAuth.instance.currentUser.uid}')
+                    .get();
+                Profile profile = Profile.fromMap(data.data());
+
+                /// create order object
+                Order order = Order(
+                    products: products,
+                    buyer: profile,
+                    deliveryAddress: Adress(city: "Agartala"));
+                await OrderService().saveOrder(order);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("Your order has been placed."),
+                ));
+              },
             )
           ],
         ),

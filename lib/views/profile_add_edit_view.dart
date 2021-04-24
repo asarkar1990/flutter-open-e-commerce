@@ -5,9 +5,11 @@ import 'package:opencommerce/models/models.dart';
 import 'package:opencommerce/views/profile_view.dart';
 
 class ProfileAddEditView extends StatelessWidget {
-  Profile profile = Profile();
+  Profile profile;
 
-  ProfileAddEditView({this.profile});
+  ProfileAddEditView({Profile profile}) {
+    if (profile == null) this.profile = Profile();
+  }
 
   /// form key
   final _formKey = GlobalKey<FormState>();
@@ -35,6 +37,7 @@ class ProfileAddEditView extends StatelessWidget {
                   var user = FirebaseAuth.instance.currentUser;
                   if (user != null) {
                     try {
+                      profile.uid = user.uid;
                       await FirebaseFirestore.instance
                           .collection("profiles")
                           .doc(user.uid)
