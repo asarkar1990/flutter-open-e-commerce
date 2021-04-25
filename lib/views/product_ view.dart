@@ -70,7 +70,7 @@ class _ProductViewState extends State<ProductView> {
                           content: Text(
                               "${widget.product.name} is added to your cart"),
                         );
-                        //ScaffoldMessenger.of(context).showSnackBar(snak);
+                        Scaffold.of(context).showSnackBar(snak);
                       },
                       child: Text('Add to Cart')),
                   ElevatedButton(

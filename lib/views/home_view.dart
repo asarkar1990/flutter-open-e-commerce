@@ -9,7 +9,7 @@ import 'package:opencommerce/views/product_%20view.dart';
 import 'package:opencommerce/views/product_add_edit_form.dart';
 import 'package:opencommerce/views/profile_add_edit_view.dart';
 import 'package:opencommerce/views/profile_view.dart';
-import 'package:opencommerce/views/widget/cart_icon.dart';
+import 'package:opencommerce/widgets/cart_icon.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -68,11 +68,14 @@ class _HomeViewState extends State<HomeView> {
 
                   /// fetch profile from firebase if exist
                   final user = FirebaseAuth.instance.currentUser;
-                  DocumentSnapshot doc = await FirebaseFirestore.instance
-                      .collection("profiles")
-                      .doc(user.uid)
-                      .get();
-                  if (doc.exists) {
+                  DocumentSnapshot doc;
+                  try {
+                    doc = await FirebaseFirestore.instance
+                        .collection("profiles")
+                        .doc(user.uid)
+                        .get();
+                  } catch (e) {}
+                  if (doc != null && doc.exists) {
                     _profile = Profile.fromMap(doc.data());
                   }
 
