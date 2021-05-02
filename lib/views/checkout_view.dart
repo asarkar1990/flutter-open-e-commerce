@@ -53,7 +53,7 @@ class CheckoutView extends StatelessWidget {
                 Order order = Order(
                     products: products,
                     buyer: profile,
-                    deliveryAddress: Adress(city: "Agartala"));
+                    );
                 await OrderService().saveOrder(order);
                 Scaffold.of(context).showSnackBar(SnackBar(
                   content: Text("Your order has been placed."),

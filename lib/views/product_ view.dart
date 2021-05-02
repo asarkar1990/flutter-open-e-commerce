@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:opencommerce/main.dart';
 import 'package:opencommerce/models/models.dart';
@@ -33,7 +34,6 @@ class _ProductViewState extends State<ProductView> {
                 setState(() {});
               },
             ),
-            CartIcon()
           ],
         ),
         body: Container(
@@ -56,31 +56,45 @@ class _ProductViewState extends State<ProductView> {
                 style: TextStyle(
                     color: widget.product.inStock ? Colors.green : Colors.red),
               ),
-              Text(widget.product.description),
+              Text(widget.product.description,style: TextStyle(fontSize: 20),),
+              SizedBox(),
+              Text(
+                "Price: Rs ${widget.product.price}",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                    fontSize: 20),
+              ),
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        cart.products.add(widget.product);
-
-                        /// show snack for confirmation
-                        final snack = SnackBar(
-                          content: Text(
-                              "${widget.product.name} is added to your cart"),
-                        );
-                        Scaffold.of(context).showSnackBar(snack);
-                      },
-                      child: Text('Add to Cart')),
+                  Builder(
+                    builder: (context) => ElevatedButton(
+                        onPressed: () {
+                          var product = widget.product;
+                          if (product.id != null){
+                            FirebaseFirestore.instance
+                                .collection("Cart")
+                                .doc(product.id)
+                                .set(product.toMap(), SetOptions(merge: true));
+                          }
+                          // cart.products.add(widget.product);
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text('${widget.product.name} added to the cart'),
+                            duration: Duration(seconds: 5),
+                          ));
+                        },
+                        child: Text('Add to Cart')),
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CheckoutView(
-                                  products: [widget.product],
-                                )));
+                                      products: [widget.product],
+                                    )));
                       },
                       child: Text('Buy')),
                 ],

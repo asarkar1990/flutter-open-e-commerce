@@ -7,7 +7,7 @@ import 'package:opencommerce/views/profile_view.dart';
 class ProfileAddEditView extends StatelessWidget {
   Profile profile = Profile();
 
-  ProfileAddEditView({this.profile});
+  ProfileAddEditView({this.profile,});
 
   /// form key
   final _formKey = GlobalKey<FormState>();
@@ -65,14 +65,14 @@ class ProfileAddEditView extends StatelessWidget {
                   initialValue: profile.name,
                   decoration: InputDecoration(labelText: "Full Name"),
                   validator: (value) =>
-                  value.isEmpty ? "Please enter your name" : null,
+                      value.isEmpty ? "Please enter your name" : null,
                   onSaved: (value) => profile.name = value,
                 ),
                 TextFormField(
                   initialValue: profile.email,
                   decoration: InputDecoration(labelText: "Email Id"),
                   validator: (value) =>
-                  value.isEmpty ? "Please enter your email Id" : null,
+                      value.isEmpty ? "Please enter your email Id" : null,
                   onSaved: (value) => profile.email = value,
                 ),
                 TextFormField(
@@ -80,8 +80,53 @@ class ProfileAddEditView extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(labelText: "Mobile Number"),
                   validator: (value) =>
-                  value.isEmpty ? "Please enter your mobile number" : null,
+                      value.isEmpty ? "Please enter your mobile number" : null,
                   onSaved: (value) => profile.mobileNumber = value,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  initialValue: profile.addressLine1,
+                  decoration: InputDecoration(labelText: "Address"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your Address" : null,
+                  onSaved: (value) => profile.addressLine1 = value,
+                ),
+                TextFormField(
+                  initialValue: profile.landMark,
+                  decoration: InputDecoration(labelText: "Landmark"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your Landmark" : null,
+                  onSaved: (value) => profile.landMark = value,
+                ),
+                TextFormField(
+                  initialValue: profile.area,
+                  decoration: InputDecoration(labelText: "Area"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your Area" : null,
+                  onSaved: (value) => profile.area = value,
+                ),
+                TextFormField(
+                  initialValue: profile.city,
+                  decoration: InputDecoration(labelText: "City"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your City" : null,
+                  onSaved: (value) => profile.city = value,
+                ),
+                TextFormField(
+                  initialValue: profile.state,
+                  decoration: InputDecoration(labelText: "State"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your State" : null,
+                  onSaved: (value) => profile.state = value,
+                ),
+                TextFormField(
+                  initialValue: profile.country,
+                  decoration: InputDecoration(labelText: "Country"),
+                  validator: (value) =>
+                      value.isEmpty ? "Please enter your Country" : null,
+                  onSaved: (value) => profile.country = value,
                 ),
               ],
             ),

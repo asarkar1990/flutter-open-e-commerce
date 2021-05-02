@@ -11,6 +11,8 @@ import 'package:opencommerce/views/profile_add_edit_view.dart';
 import 'package:opencommerce/views/profile_view.dart';
 import 'package:opencommerce/views/widget/cart_icon.dart';
 
+import 'cart_view.dart';
+
 class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -18,18 +20,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final ProductController productController = ProductController();
-
-  // @override
-  // void initState() {
-  //   loadData();
-  //
-  //   super.initState();
-  // }
-  //
-  // void loadData() async {
-  //   // await productController.getProducts();
-  //   // setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +30,15 @@ class _HomeViewState extends State<HomeView> {
           title: Text("Free Commerce"),
           actions: [
             IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-                signOut();
-              },
-            ),
-            CartIcon()
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            CartView()),
+                  );
+                })
           ],
         ),
         drawer: Drawer(
@@ -88,6 +81,12 @@ class _HomeViewState extends State<HomeView> {
                             builder: (context) =>
                                 ProfileAddEditView(profile: Profile())));
                   }
+                },
+              ),
+              ListTile(
+                title: Text('Logout'),
+                onTap: () {
+                  signOut();
                 },
               )
             ],
