@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:opencommerce/controllers/cart_controller.dart';
 import 'package:opencommerce/views/auth_view.dart';
 import 'package:opencommerce/views/home_view.dart';
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
       home:

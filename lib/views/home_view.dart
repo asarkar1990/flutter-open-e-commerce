@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:opencommerce/controllers/auth_controller.dart';
 import 'package:opencommerce/controllers/product_controller.dart';
 import 'package:opencommerce/models/models.dart';
@@ -17,18 +18,10 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final ProductController productController = ProductController();
-
-  // @override
-  // void initState() {
-  //   loadData();
+  // final ProductController productController = ProductController();
   //
-  //   super.initState();
-  // }
-  //
-  // void loadData() async {
-  //   // await productController.getProducts();
-  //   // setState(() {});
+  // _HomeViewState() {
+  //   // Get.put(ProductController());
   // }
 
   @override
@@ -97,45 +90,46 @@ class _HomeViewState extends State<HomeView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        ProductAddEditView(Product())));
+            var controller = Get.find<ProductController>();
+
+            controller.increment();
+
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) =>
+            //             ProductAddEditView(Product()))
+            // );
           },
           child: Icon(Icons.add),
         ),
-        body: Container(
-          child: StreamBuilder<List<Product>>(
-            stream: ProductService().getProductStream(),
-            builder: (context, snapShot) {
-              if (snapShot.hasData &&
-                  snapShot.connectionState != ConnectionState.done) {
-                final List<Product> products = snapShot.data;
-                return ListView.builder(
-                  // itemCount: productController.products.length,
-                  itemCount: products.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Product product = products[index];
-                    return ListTile(
-                      leading: Image.network(product.imageUrl),
-                      title: Text(product.name),
-                      subtitle: Text("${product.price}"),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductView(product)),
-                        );
-                      },
-                    );
-                  },
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
+        // body: Container(
+        //     child: ListView.builder(
+        //   itemCount: productController.products.length,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     Product product = productController.products[index];
+        //     return ListTile(
+        //       leading: Image.network(product.imageUrl),
+        //       title: Text(product.name),
+        //       subtitle: Text("${product.price}"),
+        //       onTap: () {
+        //         // Navigator.push(
+        //         //   context,
+        //         //   MaterialPageRoute(
+        //         //       builder: (context) => ProductView(product)),
+        //         // );
+        //         /// Navigation using Get.to()
+        //         Get.to(ProductView(product));
+        //       },
+        //     );
+        //   },
+        // )),
+        // body: Center(child: Text("${productController.count}"))
+        body: GetBuilder<ProductController>(
+          init: ProductController(),
+          builder: (controller) {
+            return Center(child: Text("${controller.count}"));
+          },
         ),
       ),
     );
