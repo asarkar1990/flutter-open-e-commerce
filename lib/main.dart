@@ -2,13 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencommerce/controllers/cart_controller.dart';
+import 'package:opencommerce/counter_view.dart';
 import 'package:opencommerce/views/auth_view.dart';
 import 'package:opencommerce/views/home_view.dart';
+
+import 'counter_controller.dart';
 
 final cart = CartController();
 
 void main() {
   runApp(MyApp());
+  final _ = Get.put(CounterController());
 }
 
 class MyApp extends StatefulWidget {
@@ -30,8 +34,9 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-commerce',
-      home:
-          initialized ? AuthView() : Center(child: CircularProgressIndicator()),
+      home: initialized
+          ? CounterView()
+          : Center(child: CircularProgressIndicator()),
     );
   }
 
