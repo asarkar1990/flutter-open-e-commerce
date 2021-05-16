@@ -16,18 +16,20 @@ class CounterView extends StatelessWidget {
             child: Icon(Icons.plus_one),
           ),
           body: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(child: Text("${controller?.counter}")),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.to(SecondView());
-                  },
-                  child: Text("Goto 2nd"),
-                )
-              ],
-            ),
+            child: controller.loading
+                ? Center(child: CircularProgressIndicator())
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Text("${controller?.counter}")),
+                      ElevatedButton(
+                        onPressed: () {
+                          Get.to(SecondView());
+                        },
+                        child: Text("Goto 2nd"),
+                      )
+                    ],
+                  ),
           )),
     );
   }
